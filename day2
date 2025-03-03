@@ -1,0 +1,80 @@
+ques1 :
+import java.util.*;
+
+public class ques{
+
+    public static void isGoodorBad(String s) {
+        int l = s.length();
+        int countVowel = 0;
+        int countConsonant = 0;
+
+        for (int i = 0; i < l; i++) {
+            char c = s.charAt(i);
+
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == '?') {
+                countVowel++;
+                countConsonant = 0; 
+                if (countVowel > 5) {
+                    System.out.println("BAD");
+                    return;
+                }
+            } else {
+                countConsonant++;
+                countVowel = 0; 
+                if (countConsonant > 3) {
+                    System.out.println("BAD");
+                    return;
+                }
+            }
+            
+        }
+        if(!(countConsonant > 3||countVowel > 5)){
+            System.out.println("GOOD");
+        }
+        
+    }
+
+    public static void main(String[] args) {
+        String s = "aeiou??";
+        isGoodorBad(s); 
+    }
+}
+
+
+ques2:
+import java.util.*;
+
+public class MergeArrays{
+    public static int[][] mergeArrays(int[][] nums1, int[][] nums2) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int[] pair : nums1) {
+            map.put(pair[0], map.getOrDefault(pair[0], 0) + pair[1]);
+        }
+        for (int[] pair : nums2) {
+            map.put(pair[0], map.getOrDefault(pair[0], 0) + pair[1]);
+        }
+        int[][] result = new int[map.size()][2];
+        int index = 0;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            result[index][0] = entry.getKey();
+            result[index][1] = entry.getValue();
+            index++;
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[][] nums1 = {{1, 2}, {2, 3}, {4, 5}};
+        int[][] nums2 = {{1, 4}, {3, 2}, {4, 1}};
+        
+        int[][] result = mergeArrays(nums1, nums2);
+        for (int[] pair : result) {
+            System.out.println(Arrays.toString(pair));
+        }
+    }
+}
+
+
+
+
