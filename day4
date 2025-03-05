@@ -1,0 +1,65 @@
+leetcode 2549:
+import java.util.HashSet;
+
+public class Ques {
+    public static HashSet<Integer> a = new HashSet<>();
+
+    public static int countDistinct(int n) {
+        for (int i = 1; i < n; i++) {
+            if (n % i == 1) {
+                if (!a.contains(i)) { 
+                    a.add(i);
+                    countDistinct(i);
+                }
+            }
+        }
+        return a.size(); 
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        System.out.println(countDistinct(n)); 
+    }
+}
+OR
+
+  if(n==1)
+  return 0;
+  else
+  return n-1;
+
+
+  
+  gfg(chocolate distribution)You are given an array of integers where each element represents the number of chocolates in a packet. You also have m students. The task is to distribute packets such that:
+
+Each student gets exactly one packet.
+
+The difference between the maximum and minimum chocolates given to students is minimized.
+
+import java.util.*;
+
+public class Ques {
+    public static int minDiff(int[] a,int m){
+        if(m==0){
+            return 0;
+        }
+        Arrays.sort(a);
+        
+        int min=a[m-1]-a[0];
+        for(int i=0;i<a.length-m;i++){
+            if(a[i+m-1]-a[i] < min){
+                min=a[i+m-1]-a[i];
+            }
+        }
+        return  min;
+
+        }
+
+        public static void main(String[] arg){
+            int[] choco={3,6,2,8,95,5,1,9};
+            int m=5;
+            System.out.println(minDiff(choco, m));
+        }
+
+    }
+
